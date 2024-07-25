@@ -1,10 +1,11 @@
 import javax.swing.*;
+
 import java.sql.*;
 
 public class PatientManagementSearch {
     // Image sources
     ImageIcon enterIcon = new ImageIcon(PatientManagementSearch.class.getResource("Enter.png"));
-    ImageIcon checkIcon = new ImageIcon(PatientManagementSearch.class.getResource("check.png"));
+    ImageIcon checkIcon = new ImageIcon(PatientManagementSearch.class.getResource("Check.png"));
     ImageIcon errorIcon = new ImageIcon(PatientManagementSearch.class.getResource("Error.png"));
 
     // Constructor
@@ -38,16 +39,16 @@ public class PatientManagementSearch {
                     
                     if (rs.next()) {
                         String patientDetails = String.format(
-                            "PatientID: %s\nFirst Name: %s\nLast Name: %s\nDateOfBirth: %s\nGender: %s\nContact Number: %s\nEmail: %s\nAddress: %s\nCity: %s\nState: %s",
+                            "PatientID: %s\nFirst Name: %s\nLast Name: %s\nDateOfBirth: %s\nGender: %s\nBloodPressure: %s\nContact Number: %s\nEmail: %s\nAddress: %s\nState: %s",
                             rs.getString("PatientID"),
                             rs.getString("FirstName"),
                             rs.getString("LastName"),
                             rs.getString("DateOfBirth"),
                             rs.getString("Gender"),
+                            rs.getString("BloodPressure"),
                             rs.getString("ContactNumber"),
                             rs.getString("Email"),
                             rs.getString("Address"),
-                            rs.getString("City"),
                             rs.getString("State")
                         );
                         JOptionPane.showMessageDialog(null, patientDetails, "Patient Details", JOptionPane.PLAIN_MESSAGE);

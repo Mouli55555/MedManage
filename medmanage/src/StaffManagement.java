@@ -8,10 +8,11 @@ public class StaffManagement {
         //image sources
         ImageIcon logo2 = new ImageIcon(StaffManagement.class.getResource("MedManageLogo.png"));
         ImageIcon logoSmall = new ImageIcon(StaffManagement.class.getResource("logoSmall.png"));
-        ImageIcon staffAddIcon = new ImageIcon(StaffManagement.class.getResource("staffManagementAdd.png"));
-        ImageIcon staffRemoveIcon = new ImageIcon(StaffManagement.class.getResource("staffManagementRemove.png"));
-        ImageIcon staffSearchIcon = new ImageIcon(StaffManagement.class.getResource("staffManagementSearch.png"));
-        ImageIcon staffListIcon = new ImageIcon(StaffManagement.class.getResource("staffManagementList.png"));
+        ImageIcon staffAddIcon = new ImageIcon(StaffManagement.class.getResource("StaffmanagementAdd.png"));
+        ImageIcon staffRemoveIcon = new ImageIcon(StaffManagement.class.getResource("StaffmanagementRemove.png"));
+        ImageIcon staffSearchIcon =new ImageIcon(StaffManagement.class.getResource("StaffmanagementSearch.png"));
+        ImageIcon staffListIcon = new ImageIcon(StaffManagement.class.getResource("StaffmanagementList.png"));
+        ImageIcon EnterIcon = new ImageIcon(StaffManagement.class.getResource("Enter.png"));
 
         //frame creation
         JFrame staffManagement = new JFrame();
@@ -39,26 +40,30 @@ public class StaffManagement {
         JButton staffAdd = new JButton();
         staffAdd.setBounds(50, 350, 250, 250);
         staffAdd.setIcon(staffAddIcon);
-        staffAdd.setBackground(new Color(230, 255, 242));
+        staffAdd.setBackground(new Color(230, 247, 255));
         staffAdd.setFocusPainted(false);
+        staffAdd.setBorderPainted(false);
 
         JButton staffRemove = new JButton();
         staffRemove.setBounds(400, 350, 250, 250);
         staffRemove.setIcon(staffRemoveIcon);
-        staffRemove.setBackground(new Color(230, 255, 242));
+        staffRemove.setBackground(new Color(230, 247, 255));
         staffRemove.setFocusPainted(false);
+        staffRemove.setBorderPainted(false);
 
         JButton staffSearch = new JButton();
         staffSearch.setBounds(770, 350, 250, 250);
         staffSearch.setIcon(staffSearchIcon);
-        staffSearch.setBackground(new Color(230, 255, 242));
+        staffSearch.setBackground(new Color(230, 247, 255));
         staffSearch.setFocusPainted(false);
+        staffSearch.setBorderPainted(false);
 
         JButton staffList = new JButton();
         staffList.setBounds(1140, 350, 250, 250);
         staffList.setIcon(staffListIcon);
-        staffList.setBackground(new Color(230, 255, 242));
+        staffList.setBackground(new Color(230, 247, 255));
         staffList.setFocusPainted(false);
+        staffList.setBorderPainted(false);
 
         //mouse events
         staffAdd.addMouseListener(new MouseAdapter() {
@@ -112,9 +117,43 @@ public class StaffManagement {
         //action listener
         staffAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                new StaffManagementAdd();
-            }
-        });
+                        String[] options = {"choose one", "Add Staff", "Update Staff"};
+                        JComboBox<String> chooseAddOrUpdate = new JComboBox<>(options);
+                        
+                        JPanel panel = new JPanel();
+                        panel.add(new JLabel("Select an option:"));
+                        panel.add(chooseAddOrUpdate);
+                    
+                        // Creating the JOptionPane
+                        JOptionPane optionPane = new JOptionPane(panel, JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION, EnterIcon);
+                        JDialog dialog = optionPane.createDialog("Add or Update Patient");
+                        dialog.setIconImage(logo2.getImage());
+                    
+                        // Setting focus on the JComboBox after the dialog is visible
+                        dialog.addWindowFocusListener(new WindowAdapter() {
+                            public void windowGainedFocus(WindowEvent e) {
+                                chooseAddOrUpdate.requestFocusInWindow();
+                            }
+                        });
+                
+                        dialog.addWindowListener(new WindowAdapter() {
+                            public void windowClosing(WindowEvent e) {
+                                optionPane.setValue(JOptionPane.CANCEL_OPTION);
+                            }
+                        });
+                    
+                        dialog.setVisible(true);
+                
+                        int result = (Integer) optionPane.getValue();
+                        if (result == JOptionPane.CANCEL_OPTION) return;
+                        if (result == JOptionPane.OK_OPTION) {
+                            String selectedOption = (String) chooseAddOrUpdate.getSelectedItem();
+                            if (selectedOption.equals("choose one")) return;
+                            if (selectedOption.equals("Add Staff")) new StaffManagementAdd();
+                            if (selectedOption.equals("Update Staff")) new StaffManagementUpdate();
+                        }
+                    }
+                });
         staffRemove.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 new StaffManagementRemove();

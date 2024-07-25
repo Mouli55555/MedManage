@@ -1,4 +1,5 @@
 import java.awt.*;
+
 import javax.swing.*;
 
 public class LoadingFrame extends Thread {
@@ -26,9 +27,8 @@ public class LoadingFrame extends Thread {
     public LoadingFrame() {
 
         //image
-        ImageIcon logo  = new ImageIcon(LoadingFrame.class.getResource("MedManageLogo.png"));
-        ImageIcon logo2  = new ImageIcon(LoadingFrame.class.getResource("logoSmall.png"));
-
+        ImageIcon logo = new ImageIcon(LoadingFrame.class.getResource("MedManageLogo.png"));
+        ImageIcon logo2 = new ImageIcon(LoadingFrame.class.getResource("logoSmall.png"));
 
         // Loading frame creation
         loadingFrame = new JFrame();

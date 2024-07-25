@@ -8,12 +8,12 @@ public class BannerFrame {
         // Image sources
         ImageIcon banner = new ImageIcon(BannerFrame.class.getResource("BannerFrameBanner.png"));
         ImageIcon logo1 = new ImageIcon(BannerFrame.class.getResource("MedManageLogo.png"));
-        ImageIcon buttonimg = new ImageIcon(BannerFrame.class.getResource("button1.png"));
-        ImageIcon logosmall = new ImageIcon(DBConnection.class.getResource("logosmall.png"));
+        ImageIcon buttonimg = new ImageIcon(BannerFrame.class.getResource("MenuButton.png"));
+        ImageIcon logosmall = new ImageIcon(BannerFrame.class.getResource("logoSmall.png"));
 
 
         // Loading page
-        new LoadingFrame();
+        new LoadingFrame(); 
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -52,7 +52,8 @@ public class BannerFrame {
                 menuButton.setBounds(900, 300, 300, 180); 
             }
 
-            public void mouseExited(MouseEvent e) {
+            
+            public void mouseExited(MouseEvent e) { 
                 menuButton.setBounds(900, 300, 300, 130);
             }
             public void mousePressed(MouseEvent e){

@@ -11,9 +11,12 @@ public class MenuFrame{
         ImageIcon patientIcon = new ImageIcon(MenuFrame.class.getResource("MenuPatientManagementIcon.png"));
         ImageIcon doctorIcon = new ImageIcon(MenuFrame.class.getResource("MenuDoctorManagementIcon.png"));
         ImageIcon staffIcon = new ImageIcon(MenuFrame.class.getResource("MenuStaffManagementIcon.png"));
-        ImageIcon logosmall = new ImageIcon(MenuFrame.class.getResource("logoSmall.png"));
+        ImageIcon inventoryIcon = new ImageIcon(MenuFrame.class.getResource("MenuInventorymanagementicon.png"));
+        ImageIcon billingIcon = new ImageIcon(MenuFrame.class.getResource("MenuBillingManagementIcon.png"));
+        ImageIcon appointIcon = new ImageIcon(MenuFrame.class.getResource("MenuBookingAppointmentIcon.png"));
 
-      
+
+
         //frame creation
         JFrame menuFrame = new JFrame();
         menuFrame.setSize(1440, 900);
@@ -27,67 +30,116 @@ public class MenuFrame{
         //labels
         JButton patientInfo = new JButton();
         patientInfo.setIcon(patientIcon);
-        patientInfo.setBounds(30, 250, 400, 400);
-        patientInfo.setBackground(new Color(230, 255, 242));
+        patientInfo.setBounds(30, 0, 400, 400);
+        patientInfo.setBackground(new Color(230, 247, 255));
         patientInfo.setFocusPainted(false);
+        patientInfo.setBorderPainted(false);
 
         JButton doctorInfo = new JButton();
         doctorInfo.setIcon(doctorIcon);
-        doctorInfo.setBounds(520, 250, 400, 400);
-        doctorInfo.setBackground(new Color(230, 255, 242));
+        doctorInfo.setBounds(520, 0, 400, 400);
+        doctorInfo.setBackground(new Color(230, 247, 255));
         doctorInfo.setFocusPainted(false);
+        doctorInfo.setBorderPainted(false);
 
 
         JButton staffInfo = new JButton();
         staffInfo.setIcon(staffIcon);
-        staffInfo.setBounds(1010, 250, 400, 400);
-        staffInfo.setBackground(new Color(230, 255, 242));
+        staffInfo.setBounds(1010, 0, 400, 400);
+        staffInfo.setBackground(new Color(230, 247, 255));
         staffInfo.setFocusPainted(false);
+        staffInfo.setBorderPainted(false);
 
-        JLabel textLabel = new JLabel("MED MANAGE");
-        textLabel.setBounds(400, 10, 1000, 150); 
-        textLabel.setFont(new Font("Times new roman", Font.BOLD, 100)); 
-        textLabel.setForeground(Color.BLACK);
+        JButton inventoryInfo = new JButton();
+        inventoryInfo.setIcon(inventoryIcon);
+        inventoryInfo.setBounds(30, 435, 400, 400);
+        inventoryInfo.setBackground(new Color(230, 247, 255));
+        inventoryInfo.setFocusPainted(false);
+        inventoryInfo.setBorderPainted(false);
 
-        JLabel logo = new JLabel();
-        logo.setIcon(logosmall);
-        logo.setBounds(300, 30, 100, 100);
+        JButton billingInfo = new JButton();
+        billingInfo.setIcon(billingIcon);
+        billingInfo.setBounds(520, 435, 400, 400);
+        billingInfo.setBackground(new Color(230, 247, 255));
+        billingInfo.setFocusPainted(false);
+        billingInfo.setBorderPainted(false);
+
+        JButton AppointmentInfo = new JButton();
+        AppointmentInfo.setIcon(appointIcon);
+        AppointmentInfo.setBounds(1010, 435, 400, 400);
+        AppointmentInfo.setBackground(new Color(230, 247, 255));
+        AppointmentInfo.setFocusPainted(false);
+        AppointmentInfo.setBorderPainted(false);
 
 
         //mouse events
         patientInfo.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e){
-                patientInfo.setBounds(20, 260, 420, 420);
+                patientInfo.setBounds(20, 10, 420, 420);
             }
             public void mouseExited(MouseEvent e){
-                patientInfo.setBounds(30, 250, 400, 400);
+                patientInfo.setBounds(30, 0, 400, 400);
             }
             public void mousePressed(MouseEvent e){
-                patientInfo.setBounds(30, 250, 400, 400);
+                patientInfo.setBounds(30, 0, 400, 400);
             }
         });
         doctorInfo.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e){
-                doctorInfo.setBounds(510, 260, 420, 420);
+                doctorInfo.setBounds(510, 10, 420, 420);
             }
             public void mouseExited(MouseEvent e){
-                doctorInfo.setBounds(520, 250, 400, 400);
+                doctorInfo.setBounds(520, 0, 400, 400);
             }
             public void mousePressed(MouseEvent e){
-                doctorInfo.setBounds(520, 250, 400, 400);
+                doctorInfo.setBounds(520, 0, 400, 400);
             }
         });
         staffInfo.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e){
-                staffInfo.setBounds(1000, 260, 420, 420);
+                staffInfo.setBounds(1000, 10, 420, 420);
             }
             public void mouseExited(MouseEvent e){
-                staffInfo.setBounds(1010, 250, 400, 400);
+                staffInfo.setBounds(1010, 0, 400, 400);
             }
             public void mousePressed(MouseEvent e){
-                staffInfo.setBounds(1010, 250, 400, 400);
+                staffInfo.setBounds(1010, 0, 400, 400);
             }
         });
+        inventoryInfo.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e){
+                inventoryInfo.setBounds(20, 440, 420, 420);
+            }
+            public void mouseExited(MouseEvent e){
+                inventoryInfo.setBounds(30, 435, 400, 400);
+            }
+            public void mousePressed(MouseEvent e){
+                inventoryInfo.setBounds(30, 435, 400, 400);
+            }
+        });
+        billingInfo.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e){
+                billingInfo.setBounds(510, 440, 420, 420);
+            }
+            public void mouseExited(MouseEvent e){
+                billingInfo.setBounds(520, 435, 400, 400);
+            }
+            public void mousePressed(MouseEvent e){
+                billingInfo.setBounds(520, 435, 400, 400);
+            }
+        });
+        AppointmentInfo.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e){
+                AppointmentInfo.setBounds(1000, 440, 420, 420);
+            }
+            public void mouseExited(MouseEvent e){
+                AppointmentInfo.setBounds(1010, 435, 400, 400);
+            }
+            public void mousePressed(MouseEvent e){
+                AppointmentInfo.setBounds(1010, 435, 400, 400);
+            }
+        });
+        
 
         //action listener
         doctorInfo.addActionListener(new ActionListener() {
@@ -105,13 +157,29 @@ public class MenuFrame{
                 new StaffManagement();
             }
         });
+        billingInfo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                new BillingManagement();
+            }
+        });
+        inventoryInfo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                new InventoryManagement();
+            }
+        });
+        AppointmentInfo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                new AppointmentBookingMainFrame();
+            }
+        });
 
         //frame add
         menuFrame.add(patientInfo);
         menuFrame.add(doctorInfo);
         menuFrame.add(staffInfo);
-        menuFrame.add(textLabel);
-        menuFrame.add(logo);
+        menuFrame.add(AppointmentInfo);
+        menuFrame.add(inventoryInfo);
+        menuFrame.add(billingInfo);
 
         //visability
         menuFrame.setVisible(true);

@@ -57,7 +57,7 @@ public class DoctorManagementList {
                 //table creating
                 JTable table = new JTable(model);
                 table.setRowHeight(30);
-
+                
                 //Set font
                 Font font = new Font("Times New Roman", Font.BOLD, 18);
                 table.setFont(font);

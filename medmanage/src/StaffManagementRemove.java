@@ -5,7 +5,7 @@ public class StaffManagementRemove {
 
     // Image sources
     ImageIcon enterIcon = new ImageIcon(StaffManagementRemove.class.getResource("Enter.png"));
-    ImageIcon checkIcon = new ImageIcon(StaffManagementRemove.class.getResource("check.png"));
+    ImageIcon checkIcon = new ImageIcon(StaffManagementRemove.class.getResource("Check.png"));
     ImageIcon errorIcon = new ImageIcon(StaffManagementRemove.class.getResource("Error.png"));
 
     // Constructor

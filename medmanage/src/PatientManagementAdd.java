@@ -6,17 +6,17 @@ import java.sql.*;
 public class PatientManagementAdd {
 
     // Fields
-    private JFrame patientAdd;
-    private JTextField firstNameField, lastNameField, dateOfBirthField, contactNumberField, emailField, addressField, cityField, stateField;
-    private JComboBox<String> genderField;
-    private ImageIcon errorIcon, checkIcon;
+    public JFrame patientAdd;
+    public static JTextField firstNameField, lastNameField, dateOfBirthField, bloodPressureField, contactNumberField, emailField, addressField, stateField;
+    public JComboBox<String> genderField;
+    public static int patientID;
 
+    // Image sources
+    ImageIcon logo = new ImageIcon(PatientManagementAdd.class.getResource("MedManageLogo.png"));
+    ImageIcon errorIcon = new ImageIcon(PatientManagementAdd.class.getResource("Error.png"));
+    ImageIcon checkIcon = new ImageIcon(PatientManagementAdd.class.getResource("Check.png"));
     // Constructor
     public PatientManagementAdd() {
-        // Image sources
-        ImageIcon logo = new ImageIcon(PatientManagementAdd.class.getResource("MedManageLogo.png"));
-        errorIcon = new ImageIcon(PatientManagementAdd.class.getResource("Error.png"));
-        checkIcon = new ImageIcon(PatientManagementAdd.class.getResource("check.png"));
 
         // Frame creation
         patientAdd = new JFrame();
@@ -64,37 +64,37 @@ public class PatientManagementAdd {
         patientAdd.add(genderField);
         genderField.setSelectedIndex(0);
 
-        JLabel contactNumberLabel = new JLabel("Contact Number: ");
-        contactNumberLabel.setFont(f1);
-        contactNumberLabel.setBounds(50, 250, 150, 30); 
-        patientAdd.add(contactNumberLabel);
+        JLabel BloodPressureLabel = new JLabel("Blood Pressure(BP): ");
+        BloodPressureLabel.setFont(f1);
+        BloodPressureLabel.setBounds(50, 250, 150, 30); 
+        patientAdd.add(BloodPressureLabel);
+        bloodPressureField = new JTextField();
+        bloodPressureField.setBounds(250, 250, 200, 30); 
+        patientAdd.add(bloodPressureField);
+
+        JLabel ContactNumberLabel = new JLabel("Contact Number: ");
+        ContactNumberLabel.setFont(f1);
+        ContactNumberLabel.setBounds(50, 300, 150, 30); 
+        patientAdd.add(ContactNumberLabel);
         contactNumberField = new JTextField();
-        contactNumberField.setBounds(250, 250, 200, 30); 
+        contactNumberField.setBounds(250, 300, 200, 30); 
         patientAdd.add(contactNumberField);
 
         JLabel emailLabel = new JLabel("Email: ");
         emailLabel.setFont(f1);
-        emailLabel.setBounds(50, 300, 150, 30); 
+        emailLabel.setBounds(50, 350, 150, 30); 
         patientAdd.add(emailLabel);
         emailField = new JTextField();
-        emailField.setBounds(250, 300, 200, 30); 
+        emailField.setBounds(250, 350, 200, 30); 
         patientAdd.add(emailField);
 
-        JLabel addressLabel = new JLabel("Address: ");
-        addressLabel.setFont(f1);
-        addressLabel.setBounds(50, 350, 150, 30); 
-        patientAdd.add(addressLabel);
+        JLabel AddressLabel = new JLabel("Address: ");
+        AddressLabel.setFont(f1);
+        AddressLabel.setBounds(50, 400, 150, 30); 
+        patientAdd.add(AddressLabel);
         addressField = new JTextField();
-        addressField.setBounds(250, 350, 200, 30); 
+        addressField.setBounds(250, 400, 200, 30); 
         patientAdd.add(addressField);
-
-        JLabel cityLabel = new JLabel("City: ");
-        cityLabel.setFont(f1);
-        cityLabel.setBounds(50, 400, 150, 30); 
-        patientAdd.add(cityLabel);
-        cityField = new JTextField();
-        cityField.setBounds(250, 400, 200, 30); 
-        patientAdd.add(cityField);
 
         JLabel stateLabel = new JLabel("State: ");
         stateLabel.setFont(f1);
@@ -119,8 +119,8 @@ public class PatientManagementAdd {
                 if (validateInput()) {
                     // Insert into database
                     insertIntoDatabase(firstNameField.getText(), lastNameField.getText(), genderField.getSelectedItem().toString(),
-                            dateOfBirthField.getText(), contactNumberField.getText(), emailField.getText(),
-                            addressField.getText(), cityField.getText(), stateField.getText());
+                            dateOfBirthField.getText(), bloodPressureField.getText(), contactNumberField.getText(),
+                            emailField.getText(), addressField.getText(), stateField.getText());
                 }
             }
         });
@@ -129,10 +129,11 @@ public class PatientManagementAdd {
         addEnterKeyListener(firstNameField, lastNameField);
         addEnterKeyListener(lastNameField, dateOfBirthField);
         addEnterKeyListener(dateOfBirthField, genderField);
+        addComboBoxKeyListener(genderField, bloodPressureField);
+        addEnterKeyListener(bloodPressureField, contactNumberField);
         addEnterKeyListener(contactNumberField, emailField);
         addEnterKeyListener(emailField, addressField);
-        addEnterKeyListener(addressField, cityField);
-        addEnterKeyListener(cityField, stateField);
+        addEnterKeyListener(addressField, stateField);
         addEnterKeyListener(stateField, submitButton);
 
         // Visibility and exiting frame
@@ -146,10 +147,10 @@ public class PatientManagementAdd {
             lastNameField.getText().trim().isEmpty() ||
             genderField.getSelectedIndex() == 0 || 
             dateOfBirthField.getText().trim().isEmpty() ||
+            bloodPressureField.getText().trim().isEmpty() ||
             contactNumberField.getText().trim().isEmpty() ||
             emailField.getText().trim().isEmpty() ||
             addressField.getText().trim().isEmpty() ||
-            cityField.getText().trim().isEmpty() ||
             stateField.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill all required fields.", "Input Error", JOptionPane.PLAIN_MESSAGE, errorIcon);
             return false;
@@ -158,9 +159,9 @@ public class PatientManagementAdd {
     }
 
     // Insert data into the database
-    private void insertIntoDatabase(String firstName, String lastName, String gender, String dateOfBirth, String contactNumber,
-                                String email, String address, String city, String state) {
-        String insertSQL = "INSERT INTO Patients (FirstName, LastName, Gender, DateOfBirth, ContactNumber, Email, Address, City, State) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private void insertIntoDatabase(String firstName, String lastName, String gender, String dateOfBirth, String bloodPressure,
+                                String contactNumber, String email, String address, String state) {
+        String insertSQL = "INSERT INTO Patients (FirstName, LastName, Gender, DateOfBirth, BloodPressure, ContactNumber, Email, Address, State) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(Global.url, Global.userName, Global.password);
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS)) {
@@ -169,19 +170,19 @@ public class PatientManagementAdd {
             preparedStatement.setString(2, lastName);
             preparedStatement.setString(3, gender);
             preparedStatement.setString(4, dateOfBirth);
-            preparedStatement.setString(5, contactNumber);
-            preparedStatement.setString(6, email);
-            preparedStatement.setString(7, address);
-            preparedStatement.setString(8, city);
+            preparedStatement.setString(5, bloodPressure);
+            preparedStatement.setString(6, contactNumber);
+            preparedStatement.setString(7, email);
+            preparedStatement.setString(8, address);
             preparedStatement.setString(9, state);
 
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0) {
                 try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
-                        int patientID = generatedKeys.getInt(1);
-                        JOptionPane.showMessageDialog(null, "Patient information submitted successfully! Patient ID: " + patientID, "Success", JOptionPane.INFORMATION_MESSAGE, checkIcon);
-                        resetForm();
+                        patientID = generatedKeys.getInt(1);
+                        new PatientManagementRegistration();
+                        patientAdd.dispose();
                     }
                 }
             }
@@ -190,25 +191,20 @@ public class PatientManagementAdd {
         }
     }
 
-    // Reset the form fields
-    private void resetForm() {
-        firstNameField.setText("");
-        lastNameField.setText("");
-        dateOfBirthField.setText("");
-        genderField.setSelectedIndex(0);
-        contactNumberField.setText("");
-        emailField.setText("");
-        addressField.setText("");
-        cityField.setText("");
-        stateField.setText("");
-        patientAdd.revalidate();
-        patientAdd.repaint();
-    }
-
     // Method to add Enter Key Listener
     // Add key listener for Enter key navigation
     private void addEnterKeyListener(JTextField currentField, JComponent nextComponent) {
     currentField.addKeyListener(new KeyAdapter() {
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                nextComponent.requestFocusInWindow();
+            }
+        }
+    });
+}
+// Add key listener for Enter key navigation for JComboBox
+private void addComboBoxKeyListener(JComboBox<String> currentComboBox, JComponent nextComponent) {
+    currentComboBox.addKeyListener(new KeyAdapter() {
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 nextComponent.requestFocusInWindow();

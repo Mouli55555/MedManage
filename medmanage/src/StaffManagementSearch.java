@@ -4,7 +4,7 @@ import java.sql.*;
 public class StaffManagementSearch {
     // Image sources
     ImageIcon enterIcon = new ImageIcon(StaffManagementSearch.class.getResource("Enter.png"));
-    ImageIcon checkIcon = new ImageIcon(StaffManagementSearch.class.getResource("check.png"));
+    ImageIcon checkIcon = new ImageIcon(StaffManagementSearch.class.getResource("Check.png"));
     ImageIcon errorIcon = new ImageIcon(StaffManagementSearch.class.getResource("Error.png"));
 
     // Constructor
@@ -38,15 +38,15 @@ public class StaffManagementSearch {
                     
                     if (rs.next()) {
                         String staffDetails = String.format(
-                            "StaffID: %s\nFirst Name: %s\nLast Name: %s\nRole: %s\nContact Number: %s\nEmail: %s\nAddress: %s\nCity: %s\nState: %s",
+                            "StaffID: %s\nFirst Name: %s\nLast Name: %s\nRole: %s\nGender: %s\nContact Number: %s\nEmail: %s\nAddress: %s\nState: %s",
                             rs.getString("StaffID"),
                             rs.getString("FirstName"),
                             rs.getString("LastName"),
                             rs.getString("Role"),
+                            rs.getString("Gender"),
                             rs.getString("ContactNumber"),
                             rs.getString("Email"),
                             rs.getString("Address"),
-                            rs.getString("City"),
                             rs.getString("State")
                         );
                         JOptionPane.showMessageDialog(null, staffDetails, "Staff Details", JOptionPane.PLAIN_MESSAGE);

@@ -33,7 +33,7 @@ public class PatientManagementList {
 
                 String[] cNames = new String[columnCount];
                 for(int i = 1;i<=columnCount;i++){
-                    cNames[i-1]=attributeData.getColumnName(i);
+                    cNames[i-1]=attributeData.getColumnName(i); 
                 }
 
                 //column data
@@ -74,7 +74,7 @@ public class PatientManagementList {
             }
             con.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Table not found.");
+            JOptionPane.showMessageDialog(null, "Data not found or connection error");
         }
     }
     public static void main(String[] args) {
